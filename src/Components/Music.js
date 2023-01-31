@@ -5,6 +5,8 @@ import {MediaContext} from '../App.js';
 function Music() {
     let value = useContext(MediaContext);
     const [med, setMed] = useState(value.media[0]);
+    
+    // if(med !== value.media[0]) setMed(value.media[0]);
 
     return (
         <div className="navbar" >

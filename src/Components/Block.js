@@ -9,18 +9,18 @@ function Block(props) {
   let media = value.media;
   let setMedia = value.set;
 
-  // (async function help() {
-  //   if (props.data.link === "/home") {
-  //     return;
-  //   }
-  //   let res = await axios.get(props.data.link);
-  //   const result = res.data.split("<!--[if IEMobile 7 ]>")[1];
-  //   // console.log(result);
-  //   const $ = cheerio.load(result);
-  //   let link = $('.c-content img').attr('src');
-  //   if (link) setImageLink(link);
-  //   // console.log(imgLink);
-  // })();
+  (async function help() {
+    if (props.data.link === "/home") {
+      return;
+    }
+    let res = await axios.get(props.data.link);
+    const result = res.data.split("<!--[if IEMobile 7 ]>")[1];
+    // console.log(result);
+    const $ = cheerio.load(result);
+    let link = $('.c-content img').attr('src');
+    if (link) setImageLink(link);
+    // console.log(imgLink);
+  })();
 
   async function play() {
     try {

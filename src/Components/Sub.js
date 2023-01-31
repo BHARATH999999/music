@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Block from './Block';
 
 function Sub(props) {
-    const [header, setHeader] = useState(props.data.header);
-    const [data, setData] = useState(props.data.data);
+    const [header] = useState(props.data.header);
+    const [data] = useState(props.data.data);
     // console.log(header,data,props.data)
     return (
         <>

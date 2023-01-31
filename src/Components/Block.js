@@ -7,30 +7,33 @@ function Block(props) {
   const [imgLink, setImageLink] = useState("https://c.saavncdn.com/659/Alfaazo-Hindi-2023-20230119171331-500x500.jpg");
   let value = useContext(MediaContext);
   let media = value.media;
-  let setMedia = value.setMedia;
+  let setMedia = value.set;
 
-  (async function help() {
-    if (props.data.link === "/home") {
-      return;
-    }
-    let res = await axios.get(props.data.link);
-    const result = res.data.split("<!--[if IEMobile 7 ]>")[1];
-    // console.log(result);
-    const $ = cheerio.load(result);
-    let link = $('.c-content img').attr('src');
-    if (link) setImageLink(link);
-    // console.log(imgLink);
-  })();
+  // (async function help() {
+  //   if (props.data.link === "/home") {
+  //     return;
+  //   }
+  //   let res = await axios.get(props.data.link);
+  //   const result = res.data.split("<!--[if IEMobile 7 ]>")[1];
+  //   // console.log(result);
+  //   const $ = cheerio.load(result);
+  //   let link = $('.c-content img').attr('src');
+  //   if (link) setImageLink(link);
+  //   // console.log(imgLink);
+  // })();
 
   async function play() {
-    if(props.data.type === "song") console.log('play');
-    // else return;
     try {
+      if (props.data.type === "song") console.log('play');
+      // else return;
+
       let songIdData = await axios.get("https://95j4ul.sse.codesandbox.io/songId/" + props.data.name);
+      console.log(songIdData.data.id);
       let songMediaData = await axios.get("https://95j4ul.sse.codesandbox.io/songMediaUrl/" + songIdData.data.id);
+      console.log(songMediaData.data.songBaseUrl);
       setMedia(songMediaData.data.songBaseUrl);
     }
-    catch(err){
+    catch (err) {
       console.log(err);
     }
   }
